@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 const ChangeOfCurrency = () => {
-  const { dispatch, selectedOption } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
 
-  const currencyChange = (val, e) => {
-    selectedOption(e.target.value);
+  const currencyChange = (val) => {
     dispatch({
       type: "CHG_CURRENCY",
       payload: val,
@@ -18,20 +17,26 @@ const ChangeOfCurrency = () => {
       <select
         style={{
           backgroundColor: "green",
-
           border: "2px solid black",
           color: "white",
           hover: "white",
         }}
-        value={selectedOption}
         //name="hover_color"
         id="currency"
         onChange={(event) => currencyChange(event.target.value)}
       >
-        <option value="£">(£ Pound)</option>
-        <option value="$">($ Dollar)</option>
-        <option value="€">(€ Euro)</option>
-        <option value="₹">(₹ Rupee)</option>
+        <option style={{ color: "black" }} value="£">
+          (£ Pound)
+        </option>
+        <option style={{ color: "black" }} value="$">
+          ($ Dollar)
+        </option>
+        <option style={{ color: "black" }} value="€">
+          (€ Euro)
+        </option>
+        <option style={{ color: "black" }} value="₹">
+          (₹ Rupee)
+        </option>
       </select>
     </div>
   );

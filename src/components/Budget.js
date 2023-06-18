@@ -2,16 +2,16 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Budget = () => {
-  const { currency, budget, dispatch } = useContext(AppContext);
+  const { currency, expenses, budget, dispatch } = useContext(AppContext);
   const limitValue = 20000;
   const changeOfBudget = (val) => {
-    // const totalExpenses = expenses.reduce((total, item) => {
-    //   return (total += item.cost);
-    // }, 0);
+    const totalExpenses = expenses.reduce((total, item) => {
+      return (total += item.cost);
+    }, 0);
 
-    if (val < 2000) {
+    if (val < totalExpenses) {
       alert("Budget can not be lower than £2000 allocated spending");
-    } else if (val >= limitValue) {
+    } else if (val > limitValue) {
       alert("The value cannot exceed £20000 funds Limit");
     } else {
       dispatch({
@@ -27,8 +27,9 @@ const Budget = () => {
 
       <input
         type="number"
+        id="Budget"
         value={budget}
-        style={{ marginLeft: "1rem", size: 10 }}
+        style={{ marginLeft: "10px", size: 10 }}
         onInput={(event) => changeOfBudget(event.target.value)}
       ></input>
     </div>
